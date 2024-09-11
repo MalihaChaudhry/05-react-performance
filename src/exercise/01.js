@@ -4,7 +4,7 @@
 import {lazy, Suspense, useState} from 'react'
 
 function loadGlobe() {
-  return import('../globe')
+  return import(/* webpackPrefetch: true */ '../globe')
 }
 const Globe = lazy(loadGlobe)
 
@@ -23,13 +23,11 @@ function App() {
       }}
     >
       <label
-        for="checkbox"
         onMouseEnter={loadGlobe}
         onFocus={loadGlobe}
         style={{marginBottom: '1rem'}}
       >
         <input
-          id="checkbox"
           type="checkbox"
           checked={showGlobe}
           onChange={e => setShowGlobe(e.target.checked)}
